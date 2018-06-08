@@ -8,12 +8,11 @@ class TestCase
 {
     string testType;
     int failed, passed, total;
+    ostream &output;
 
   public:
-    TestCase(string s, ostream &os) : failed(0), passed(0), total(0)
-    {
-        testType = s;
-    }
+    TestCase(string s, ostream &os);
+    ostream &print();
 
     template <typename T>
     TestCase &check_equal(T a, T b)
@@ -27,7 +26,7 @@ class TestCase
         else
         {
             failed++;
-            cout << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " not equal to " << b << "!" << endl;
+            output << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " not equal to " << b << "!" << endl;
         }
         return *this;
     }
@@ -44,7 +43,9 @@ class TestCase
         else
         {
             failed++;
-            cout << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " equal to " << b << "!" << endl;
+            output << testType;
+
+            output << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " equal to " << b << "!" << endl;
         }
         return *this;
     }
@@ -61,7 +62,7 @@ class TestCase
         else
         {
             failed++;
-            cout << this->testType << ": Failure in test #" << to_string(total) << ": Function should return " << b << " but return " << fun(a) << "!" << endl;
+            output << this->testType << ": Failure in test #" << to_string(total) << ": Function should return " << b << " but return " << fun(a) << "!" << endl;
         }
         return *this;
     }
@@ -81,13 +82,8 @@ class TestCase
         else
         {
             failed++;
-            cout << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " not equal to " << s << "!" << endl;
+            output << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " not equal to " << s << "!" << endl;
         }
         return *this;
-    }
-
-    void print()
-    {
-        cout << this->testType << ": " << failed << " failed, " << passed << " passed, " << total << " total." << endl;
     }
 };
