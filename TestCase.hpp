@@ -62,7 +62,7 @@ class TestCase
         else
         {
             failed++;
-            output << this->testType << ": Failure in test #" << to_string(total) << ": Function should return " << b << " but return " << fun(a) << "!" << endl;
+            output << this->testType << ": Failure in test #" << to_string(total) << ": Function should return " << b << " but returned " << fun(a) << "!" << endl;
         }
         return *this;
     }
