@@ -26,7 +26,7 @@ class TestCase
         else
         {
             failed++;
-            output << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " not equal to " << b << "!" << endl;
+            output << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " should equal " << b << "!" << endl;
         }
         return *this;
     }
@@ -82,7 +82,7 @@ class TestCase
         else
         {
             failed++;
-            output << this->testType << ": Failure in test #" << to_string(total) << ": " << a << " should equal to " << s << "!" << endl;
+            output << this->testType << ": Failure in test #" << to_string(total) << ": " << " string value should be " << a << " but is " << s << "!" << endl;
         }
         return *this;
     }
